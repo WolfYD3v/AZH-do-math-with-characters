@@ -25,4 +25,5 @@ Because why not.
 ## Some links, if you're curious...
 - [The Offcial Documentation of AZH](DOCUMENTATION.md)
 ## Upcoming Features
+- Strings and variable support to allow more complex operations
 - The AZH official file format, to write AZH code without filling manually the stack every time you want to test your AZH script
