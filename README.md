@@ -22,5 +22,7 @@ Because why not.
 - AZH will tell you when you made a mistake when he want to
 - You have to fill the AZH stack everytime you want to test your code, normal AZH behavoir
 
+## Some links, if you're curious...
+- [The Offcial Documentation of AZH](DOCUMENTATION.md)
 ## Upcoming Features
 - The AZH official file format, to write AZH code without filling manually the stack every time you want to test your AZH script

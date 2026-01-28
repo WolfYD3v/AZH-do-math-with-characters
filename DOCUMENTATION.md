@@ -45,7 +45,7 @@ The following table shows how the interpretation work:
 
 ## The stack of AZH
 AZH work with a stack, that is empty.
-To fill the stack, typing the following line in the main() function of the (main.py file)[main.py]
+To fill the stack, typing the following line in the main() function of the [main.py file](main.py).
 ``` python
 azh_interpretor.add_data_to_stack("your AZH great and amazing code")
 ```
