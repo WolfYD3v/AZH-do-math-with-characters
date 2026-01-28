@@ -3,7 +3,9 @@ from project_files import project_main
 
 
 def main():
-    # azh_interpretor.add_data_to_stack("your code")
+    azh_interpretor.add_data_to_stack("aabababbabc")
+    azh_interpretor.add_data_to_stack("abbaac")
+    azh_interpretor.add_data_to_stack("dbbaaabaa")
 
     azh_interpretor.interpret_stack()
 

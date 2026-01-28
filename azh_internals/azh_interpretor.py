@@ -4,6 +4,8 @@ _binary_value_to_insert = 1
 _stack = []
 
 _binary_outputs_array = []
+_decrypted_outputs_array = []
+_operators_array = []
 
 
 def _invert_binary_value_to_insert():
@@ -33,6 +35,10 @@ def _read_stack_element(_stack_element):
             binary_output += str(_binary_value_to_insert)
         elif _stack_element_character == "b":
             _invert_binary_value_to_insert()
+        elif _stack_element_character == "c":
+            _operators_array.append("+")
+        elif _stack_element_character == "d":
+            _operators_array.append("-")
 
         else:
             return "ERROR | " + _stack_element_character + " is not supported dumbass"
@@ -44,7 +50,7 @@ def _validate_binary_outputs():
     array_idx = 0
 
     for _binary_output in _binary_outputs_array:
-        if len(_binary_output) < _max_binary_output_size:
+        if len(_binary_output) < _max_binary_output_size and _binary_output != "":
             filling_binary_output_times = _max_binary_output_size - len(_binary_output)
             for loop in range(filling_binary_output_times):
                 _binary_outputs_array[array_idx] = (
@@ -55,7 +61,26 @@ def _validate_binary_outputs():
 
 def _decrypt_binary_ouputs_array():
     for _binary_output in _binary_outputs_array:
-        print(f"{int(_binary_output, 2)}")
+        if _binary_output != "":
+            _decrypted_outputs_array.append(int(_binary_output, 2))
+            print(f"{int(_binary_output, 2)}")
+
+
+def do_math():
+    result = 0
+    idx = 0
+
+    for b_output in _decrypted_outputs_array:
+        if idx == 0:
+            result += b_output
+        elif _operators_array[idx] == "+":
+            result += b_output
+        elif _operators_array[idx] == "-":
+            result -= b_output
+
+        idx += 1
+
+    return result
 
 
 # STEP 1: Lire la stack, interpréter ligne par ligne
@@ -64,12 +89,16 @@ def interpret_stack():
 
     # B. CHECK 1 | Si la stack est vide alors on renvoi une erreur
     if len(_stack) <= 0:
-        return "ERROR | Stack empty, cannot proceed"
+        print("ERROR | Stack empty, cannot proceed")
+        return
 
     for _stack_element in _stack:
         # C. CHECK 2 | Si le premier caractère de l'élément de stack est "b", on renvoi une erreur (azh ne veut pas, c'est pas logique selon lui)
         if _stack_element[0] == "b":
-            return "ERROR | azh doesn't allow a stack element that starts with 'b' (not logic)"
+            print(
+                "ERROR | azh doesn't allow a stack element that starts with 'b' (not logic)"
+            )
+            return
         # D. Si le CHECK 2 est passé alors on lit l'élément de la stack
         _read_stack_element(_stack_element)
 
@@ -79,11 +108,18 @@ def interpret_stack():
     print("Validating binary outputs...")
     _validate_binary_outputs()
     print(f"Binary outputs validated! -> {_binary_outputs_array}")
+    print(f"Operators listed: {_operators_array}")
 
     # F. Decrypte les bits en chiffres
     print("")
     print("Decrypting binary outputs...")
     _decrypt_binary_ouputs_array()
+
+    # G. Maths?????
+    if len(_operators_array) > 0:
+        print("")
+        print("Doing some math...")
+        print(do_math())
 
 
 def add_data_to_stack(_data_added):
