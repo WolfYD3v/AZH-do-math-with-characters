@@ -41,7 +41,11 @@ The following table shows how the interpretation work:
 
 "c" tells to AZH to make an addition in the math process, because yes, AZH do math!
 
-"d" tells to AZH to make an soustraction in the math process
+"d" tells to AZH to make a soustraction in the math process
+
+"e" tells to AZH to make a multiplication in the math process
+
+"f" tells to AZH to make a division in the math process
 
 ## The stack of AZH
 AZH work with a stack, that is empty.

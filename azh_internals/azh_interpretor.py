@@ -39,6 +39,11 @@ def _read_stack_element(_stack_element):
             _operators_array.append("+")
         elif _stack_element_character == "d":
             _operators_array.append("-")
+        elif _stack_element_character == "e":
+            _operators_array.append("*")
+        elif _stack_element_character == "f":
+            _operators_array.append("/")
+
 
         else:
             return "ERROR | " + _stack_element_character + " is not supported dumbass"
@@ -70,13 +75,17 @@ def do_math():
     result = 0
     idx = 0
 
-    for b_output in _decrypted_outputs_array:
-        if idx == 0:
-            result += b_output
-        elif _operators_array[idx] == "+":
-            result += b_output
+    for b_output_idx in range(len(_decrypted_outputs_array) - 1):
+        if _operators_array[idx] == "+":
+            result += _decrypted_outputs_array[b_output_idx + 1]
         elif _operators_array[idx] == "-":
-            result -= b_output
+            result -= _decrypted_outputs_array[b_output_idx + 1]
+        elif _operators_array[idx] == "*":
+            result *= _decrypted_outputs_array[b_output_idx + 1]
+        elif _operators_array[idx] == "/":
+            result /= _decrypted_outputs_array[b_output_idx + 1]
+        else:
+            pass
 
         idx += 1
 
@@ -85,7 +94,8 @@ def do_math():
 
 # STEP 1: Lire la stack, interpréter ligne par ligne
 def interpret_stack():
-    # A. Initialiser les variables nécessaires:
+    # A. Initialiser les variables nécessaires
+    global _stack
 
     # B. CHECK 1 | Si la stack est vide alors on renvoi une erreur
     if len(_stack) <= 0:
@@ -120,8 +130,11 @@ def interpret_stack():
         print("")
         print("Doing some math...")
         print(do_math())
+    
+    _stack = []
 
 
 def add_data_to_stack(_data_added):
-    _stack.append(_data_added)
-    print(f"STACK | Current state -> {_stack}")
+    if _data_added != "":
+        _stack.append(_data_added)
+        print(f"STACK | Current state -> {_stack}")

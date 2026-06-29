@@ -3,9 +3,8 @@ from project_files import project_main
 
 
 def main():
-    azh_interpretor.add_data_to_stack("aabababbabc")
-    azh_interpretor.add_data_to_stack("abbaac")
-    azh_interpretor.add_data_to_stack("dbbaaabaa")
+    azh_interpretor.add_data_to_stack("aaaaaaaabd")
+    azh_interpretor.add_data_to_stack("aaaaaaaba")
 
     azh_interpretor.interpret_stack()
 
